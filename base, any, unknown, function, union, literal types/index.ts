@@ -267,25 +267,151 @@ id = false;
 
 // --------------------------------------
 
-interface ApiResponse<T> {
-  status: number;
-  data: T;
-}
+// interface ApiResponse<T> {
+//   status: number;
+//   data: T;
+// }
 
-const response: ApiResponse<string> = {
-  status: 200,
-  data: 'hello',
-};
+// const response: ApiResponse<string> = {
+//   status: 200,
+//   data: 'hello',
+// };
 
-interface User {
-  name: string;
-  age: number;
-}
+// interface User {
+//   name: string;
+//   age: number;
+// }
 
-const response2: ApiResponse<User> = {
-  status: 200,
-  data: {
-    name: 'Alex',
-    age: 38,
-  },
-};
+// const response2: ApiResponse<User> = {
+//   status: 200,
+//   data: {
+//     name: 'Alex',
+//     age: 38,
+//   },
+// };
+
+// ------------------------------------
+
+// Типизация Promise
+
+// function fetchUser(): Promise<string> {
+//   return new Promise((resolve) => {
+//     resolve('string');
+//   });
+// }
+
+// -------------------------------------------
+// Type Assertion - когда разработчик знает лучше
+
+// let value: unknown = 'hello';
+
+// let stringValue = value as string;
+
+// stringValue.toLocaleUpperCase();
+
+// (value as string).toLocaleUpperCase();
+
+// const input = document.querySelector('input') as HTMLInputElement;
+// input.value = 'hello';
+
+// ----------------------------------------
+
+// Partial - делает ключи опциональными (всё)
+
+// undefined === ?
+
+// type User = {
+//   name: string;
+//   age: number;
+// };
+
+// type UpdateUser = Partial<User>;
+
+// const user: UpdateUser = {};
+// -----------------------------------------
+
+// Pick, Omit
+// type User = {
+//   name: string;
+//   age: number;
+//   isOnline: boolean;
+// };
+
+// type UserName = Pick<User, 'name'>;
+
+// const userName: UserName = {
+//   name: 'Tariel',
+// };
+
+// type UserWithoutAge = Omit<User, 'age'>;
+// ---------------------------------------------
+
+// Record - utility type
+
+// создает объект с определенными ключами и значениями.
+
+// type UserRoles = Record<string, string>;
+
+// const roles: UserRoles = {
+//   Alex: 'admin',
+//   John: 'user',
+// };
+
+// type Role = 'admin' | 'user';
+
+// TS заставит добавить все ключи
+// const permissions: Record<Role, { priority: number; password: string }> = {
+//   admin: {
+//     password: '123123',
+//     priority: 10,
+//   },
+//   user: {
+//     password: '1asaflsmkasdok1',
+//     priority: 1,
+//   },
+// };
+
+// ------------------------------------
+
+// типизация функции
+// type Callback = (val: number) => void;
+
+// function a(fn: Callback) {
+//   fn(40);
+// }
+
+// a((n: number) => {
+//   console.log(n);
+// }); //40
+
+//------------------------
+// void - функция которая ничего не возвращает
+
+// function log(): void {
+//   console.log('hello');
+// }
+
+// ..................................................................................
+
+// в TS есть 4 уровня мощи типов:
+
+// 1) Базовые
+// string
+// number
+// boolean
+
+// 2) Составные
+// object
+// array
+// union
+
+// 3) Utility типы
+// Record
+// Pick
+// Omit
+// Partial
+
+// 4) Продвинутая система типов
+// Generics
+// Conditional types
+// Mapped types
